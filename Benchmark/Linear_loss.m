@@ -1,0 +1,23 @@
+function L = Linear_loss(t, theta1, theta2, theta3, theta4, y)
+% --- 函数定义 ---
+    H = Hessian_matrix();
+    L_vec = zeros(size(t));
+    for i = 1:length(t)
+        % 多项式项与修正项
+        term_poly = (t(i)-1)*(t(i)-2)*(t(i)-3)*(t(i)-4);
+        
+        y_hat = theta2*(term_poly + 1.0) + ...
+                theta3*(term_poly + 1.5) + ...
+                theta4*(term_poly + 0.5) + ...
+                theta1*(abs(t(i)-2.5)-3) + ...
+                0.5*theta2*H(2,2)*theta2*(t(i)-2)*(t(i)-3)*(t(i)-4)/((1-2)*(1-3)*(1-4)) + ...
+                0.5*theta4*H(4,4)*theta4*(t(i)-1)*(t(i)-2)*(t(i)-4)/((3-1)*(3-2)*(3-4)) + ...
+                0.5*theta3*H(3,3)*theta3*(t(i)-1)*(t(i)-3)*(t(i)-4)/((2-1)*(2-3)*(2-4)) + ...
+                0.5*theta1*H(1,1)*theta1*(t(i)-1)*(t(i)-2)*(t(i)-3)/((4-1)*(4-2)*(4-3)) ;
+        
+        L_vec(i) = y_hat - y(i);
+    end
+    % lsqnonlin 需要返回残差向量，如果是算标量 Loss，请用 sum(L_vec.^2)
+    % 但为了匹配 lsqnonlin 的默认用法，这里返回 L_vec
+    L = L_vec; 
+end
