@@ -53,8 +53,8 @@ F1 = U00'*H*U00;
 nnn1 = sum(diag(Sigma_ff1)>thres);
 U11 = [U0(:,1:nnn0) U0(:,nnn0+1:136)*U1];
 % % second-order
-% U10 = U1(:,2);
-% H1 = U00'*H0*U0(:,1:2)*pinv(Sigma_ff(1:2,1:2))*U0(:,1:2)'*H0*U00;
+% U10 = U1(:,nnn1+1:136-nnn0);
+% H1 = U00'*H0*U0(:,1:nnn0)*pinv(Sigma_ff(1:nnn0,1:nnn0))*U0(:,1:nnn0)'*H0*U00;
 % F2 = U10'*H1*U10;
 % [U2,Sigma_ff2,~] = svd(F2);
 
