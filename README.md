@@ -1,3 +1,5 @@
+# Overview of the Computational Approach to Parameter Identifiability Scaling Laws
+
 We consider a general model $\boldsymbol{\varphi(t, \theta)}$, where $\boldsymbol{t}$ denotes the independent input variable (e.g., time) and $\boldsymbol{\theta} \in \mathbb{R}^k$ is the parameter vector. The model architecture is versatile, encompassing explicit functional forms (e.g., neural networks) or solutions to complex differential equations, with observable variables $\boldsymbol{h(\varphi(t, \theta))}$ mapped to experimental measurements $\{\boldsymbol{t}_i, \hat{\boldsymbol{h}}_i\}_{i=1}^N$ collected at discrete time points.
 
 Using the least-squares objective
